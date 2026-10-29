@@ -19,7 +19,7 @@ A DNS fault was intentionally created by configuring an invalid IPv4 DNS server 
 ## Troubleshooting process
 
 1. Created a clean Windows baseline and verified normal connectivity.
-2. Confirmed external IP connectivity with `ping 8.8.8.8`.
+2. Confirmed external IP connectivity with **ping 8.8.8.8**.
 3. Confirmed normal DNS resolution with `nslookup google.com`.
 4. Changed the IPv4 DNS setting to an invalid test address.
 5. Collected evidence using:
@@ -29,10 +29,9 @@ A DNS fault was intentionally created by configuring an invalid IPv4 DNS server 
    ping google.com
    nslookup google.com
    ```
-6. ### Diagnosis
-Identified DNS configuration as the cause because IP connectivity worked while hostname resolution failed.
+6.Identified DNS configuration as the cause because IP connectivity worked while hostname resolution failed.
 **Evidence collected during troubleshooting:**
-- **DNS server before the fault:** 10.68.102.31
+- **DNS server before the fault:** 10.0.2.2
 - **Invalid DNS server configured:** 192.0.2.99
 - **IP connectivity during the fault:** It succeeded with the reply of
   Reply from 8.8.8.8; bytes=32 time=78ms TTL=128
@@ -45,9 +44,9 @@ Identified DNS configuration as the cause because IP connectivity worked while h
   Minimum = 33ms, Maximum = 78ms, Average = 49ms
   
 - **DNS resolution during the fault:** Ping request could not find host google.com, please check the name and try again.
-- **DNS configuration after repair:** 10.68.102.31 and 10.0.2.2.
+- **DNS configuration after repair:** 10.0.2.2.
 7. **Restored DNS to automatic DHCP, re-enabled IPv6, and cleared the DNS cache:** ```bat
-   ipconfig /flushdns
+   **ipconfig /flushdns**
    ```
 8. Validated the fix with `nslookup`, `ping google.com`, and a browser test.
 
